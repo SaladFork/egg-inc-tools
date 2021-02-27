@@ -1,5 +1,4 @@
 import React from 'react'
-import t from 'prop-types'
 import classnames from 'classnames'
 
 const Input = ({ className: passedClassName, ...rest }) => {
