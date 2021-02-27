@@ -25,15 +25,17 @@ function App() {
 
   return (
     <div className="max-w-lg mx-auto mt-3">
-      <div className="border border-gray-300">
-        <div className="bg-gray-200">
-          <h1 className="font-bold text-xl p-4">
+      <div className="border border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600">
+        <div className="bg-gray-200 dark:bg-gray-600">
+          <h1 className="font-bold text-xl p-4 dark:text-white text-opacity-70">
             What egg laying rate do I need?
           </h1>
         </div>
         <div className="p-4 space-y-6 ">
           <label className="flex flex-col font-semibold">
-            <div className="mb-2">Eggs Required</div>
+            <div className="mb-2 dark:text-white text-opacity-80">
+              Eggs Required
+            </div>
             <Input
               type="text"
               value={eggCountValue}
@@ -49,7 +51,9 @@ function App() {
             </div>
           </label>
           <label className="flex flex-col font-semibold py-3">
-            <div className="mb-2">Contract Length</div>
+            <div className="mb-2 dark:text-white text-opacity-80">
+              Contract Length
+            </div>
             <div className="flex space-x-2">
               <Input
                 type="number"
@@ -75,7 +79,7 @@ function App() {
           </label>
 
           {haveValues && (
-            <table className="w-full max-w-sm mx-auto border border-gray-100">
+            <table className="w-full max-w-sm mx-auto border border-gray-100 dark:border-gray-600">
               <thead className="bg-gray-200 font-medium text-xs text-gray-500 text-center">
                 <tr>
                   <th className="px-2 py-1">If you had full chickens...</th>
@@ -86,8 +90,11 @@ function App() {
                 {[0, 4, 8, 12, 16, 24, 48, 72]
                   .filter((offset) => offset < contractLengthInHours)
                   .map((offset) => (
-                    <tr className="text-sm even:bg-gray-100">
-                      <td className="px-2 py-1 border-r-2 border-gray-100">
+                    <tr
+                      className="text-sm even:bg-gray-100 dark:even:bg-gray-700 dark:text-white text-opacity-80"
+                      key={offset}
+                    >
+                      <td className="px-2 py-1 border-r-2 border-gray-100 dark:border-gray-700">
                         {offset ? `${offset} hours in` : 'Instantly'}
                       </td>
                       <td className="text-right px-2 py-1">

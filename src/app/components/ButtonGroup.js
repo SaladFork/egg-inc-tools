@@ -15,16 +15,16 @@ ButtonGroup.propTypes = {}
 
 ButtonGroup.Button = ({ selected, className: passedClassName, ...rest }) => {
   const colorClasses = selected
-    ? 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium'
-    : 'hover:bg-gray-100 active:bg-gray-200 border-grey-200'
+    ? 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium border-blue-600'
+    : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:active:bg-gray-800 active:bg-gray-200 border-grey-200 dark:border-gray-600'
 
   return (
     <button
       className={classnames(
         colorClasses,
         'px-4 py-1 rounded-none first:rounded-l-md last:rounded-r-md',
-        // 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:ring-opacity-50',
-        'text-opacity-90',
+        'focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30',
+        'dark:text-white text-opacity-90',
         'border',
         'select-none',
         passedClassName
