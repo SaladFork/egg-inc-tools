@@ -80,7 +80,7 @@ function App() {
 
           {haveValues && (
             <table className="w-full max-w-sm mx-auto border border-gray-100 dark:border-gray-600">
-              <thead className="bg-gray-200 font-medium text-xs text-gray-500 text-center">
+              <thead className="bg-gray-200 font-medium text-xs text-opacity-80 text-center dark:bg-gray-600 dark:text-white">
                 <tr>
                   <th className="px-2 py-1">If you had full chickens...</th>
                   <th className="px-2 py-1">Egg laying rate needed</th>
