@@ -45,11 +45,11 @@ const ChickensRequiredCalculator = () => {
           <div className="mb-2 dark:text-white text-opacity-80">
             Target Egg Lay Rate
           </div>
-          <div className="flex space-x-2">
+          <div className="grid grid-cols-2 gap-2">
             <Input
               type="text"
               placeholder="4200, 10K, 5.2B, 6e9, …"
-              className={classnames('flex-grow', {
+              className={classnames('flex-grow flex-shrink', {
                 'border-red-500 dark:border-red-500':
                   targetLayRateValue && !targetLayRate,
               })}
@@ -80,7 +80,7 @@ const ChickensRequiredCalculator = () => {
           <div className="mb-2 dark:text-white text-opacity-80">
             Current Egg Lay Rate
           </div>
-          <div className="flex space-x-2">
+          <div className="grid grid-cols-2 gap-2">
             <Input
               type="text"
               placeholder="4200, 10K, 5.2B, 6e9, …"

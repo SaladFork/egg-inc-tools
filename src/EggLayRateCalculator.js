@@ -46,7 +46,7 @@ const EggLayRateCalculator = () => {
           <div className="mb-2 dark:text-white text-opacity-80">
             Contract Length
           </div>
-          <div className="flex space-x-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <Input
               type="number"
               className="flex-grow"
@@ -56,7 +56,7 @@ const EggLayRateCalculator = () => {
                 setContractLength(parseInt(value, 10) || null)
               }
             />
-            <ButtonGroup>
+            <ButtonGroup className="mx-auto">
               {['minutes', 'hours', 'days'].map((lengthOption) => (
                 <ButtonGroup.Button
                   key={lengthOption}
