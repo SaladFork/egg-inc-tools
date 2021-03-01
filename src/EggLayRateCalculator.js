@@ -90,10 +90,9 @@ const EggLayRateCalculator = () => {
                       {offset ? `${offset} hours in` : 'Instantly'}
                     </td>
                     <td className="text-right px-2 py-1">
-                      ~
                       {displayValueShort(
                         eggCount / (contractLengthInHours - offset),
-                        0
+                        2
                       )}{' '}
                       eggs/hr
                     </td>
