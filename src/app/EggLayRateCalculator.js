@@ -4,7 +4,7 @@ import {
   displayValue,
   displayValueShort,
   parseValueString,
-} from 'app/components/utils/suffixes'
+} from 'app/utils/suffixes'
 import { useState, useMemo } from 'react'
 import Card from 'app/components/Card'
 
@@ -24,7 +24,7 @@ const EggLayRateCalculator = () => {
   const haveValues = !!(eggCount && contractLength)
 
   return (
-    <Card title={'What egg laying rate do I need?'}>
+    <Card title="What egg laying rate do I need?">
       <div className="p-4 space-y-6">
         <label className="flex flex-col font-semibold">
           <div className="mb-2 dark:text-white text-opacity-80">
@@ -46,7 +46,7 @@ const EggLayRateCalculator = () => {
           <div className="mb-2 dark:text-white text-opacity-80">
             Contract Length
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-2">
             <Input
               type="number"
               className="flex-grow"

@@ -12,4 +12,8 @@
   *:after {
     box-sizing: inherit;
   }
+
+  a[href] {
+    @apply underline hover:text-blue-600;
+  }
 }

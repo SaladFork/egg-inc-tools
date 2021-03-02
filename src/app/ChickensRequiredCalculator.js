@@ -6,7 +6,7 @@ import {
   displayValue,
   displayValueShort,
   parseValueString,
-} from 'app/components/utils/suffixes'
+} from 'app/utils/suffixes'
 import classnames from 'classnames'
 
 const ChickensRequiredCalculator = () => {
@@ -38,8 +38,12 @@ const ChickensRequiredCalculator = () => {
 
   const haveValues = !!(targetLayRate && currentLayRate && currentChickenCount)
 
+  const chickensNeeded =
+    haveValues &&
+    (targetLayRatePerHour / currentLayRatePerHour) * currentChickenCount
+
   return (
-    <Card title={'How many chickens do I need?'}>
+    <Card title="How many chickens do I need?">
       <div className="p-4 space-y-6">
         <label className="flex flex-col font-semibold">
           <div className="mb-2 dark:text-white text-opacity-80">
@@ -143,10 +147,9 @@ const ChickensRequiredCalculator = () => {
               Chickens needed for target lay rate
             </div>
             <div className="text-center dark:text-white py-2">
-              {displayValue(
-                (targetLayRatePerHour / currentLayRatePerHour) *
-                  currentChickenCount
-              )}
+              {displayValue(chickensNeeded)} (
+              {displayValueShort(chickensNeeded - currentChickenCount)}{' '}
+              {chickensNeeded > 0 ? 'more' : 'fewer'})
             </div>
           </div>
         )}
