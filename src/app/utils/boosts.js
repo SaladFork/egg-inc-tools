@@ -168,10 +168,35 @@ export const boostCombinations = [
     tokens: sumBy(prisms, 'tokens') + sumBy(beacons, 'tokens'),
     time: comboTime,
     // FIXME: This doesn't work unless the boost beacons line up time-wise exactly in full
-    averageMultiplier: sum(
-      prisms.map((p) => p.multiplier / (comboTime / p.time))
-    ),
+    // averageMultiplier: sum(
+    //   prisms.map((p) => p.multiplier / (comboTime / p.time))
+    // ),
     premium: prisms.length + beacons.length > 2,
+    chickensForHatchRate(hatchRate) {
+      // FIXME: Properly calculate multiplier instead of adding time pieces
+      // return (
+      //   sum(prisms.map((p) => p.multiplier / (comboTime / p.time))) *
+      //   hatchRate *
+      //   comboTime
+      // )
+      let chickensHatched = 0
+      for (let t = 10; t <= comboTime; t += 10) {
+        const prismMultiplier =
+          sumBy(
+            prisms.filter((p) => p.time >= t),
+            'multiplier'
+          ) || 1
+
+        const boostBoost =
+          sumBy(
+            beacons.filter((b) => b.time >= t),
+            'multiplier'
+          ) || 1
+
+        chickensHatched += hatchRate * prismMultiplier * boostBoost * 10
+      }
+      return chickensHatched
+    },
   }
 })
 

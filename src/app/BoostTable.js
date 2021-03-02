@@ -18,7 +18,7 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
       combos = combos.filter((c) => c.prisms.length + c.beacons.length <= 2)
     }
     combos = combos.filter(
-      (c) => c.averageMultiplier * hatchRate * c.time >= target * 0.9
+      (c) => c.chickensForHatchRate(hatchRate) >= target * 0.98
     )
 
     combos = orderBy(
@@ -57,7 +57,15 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
       </thead>
       <tbody>
         {boostsToShow.map(
-          ({ prisms, beacons, cost, tokens, time, averageMultiplier, key }) => (
+          ({
+            prisms,
+            beacons,
+            cost,
+            tokens,
+            time,
+            key,
+            chickensForHatchRate,
+          }) => (
             <tr
               key={key}
               className="text-sm even:bg-gray-100 dark:even:bg-gray-700 dark:text-white text-opacity-80"
@@ -90,7 +98,7 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
                 {/* averageMultiplier */}
               </td>
               <td className="px-2 py-1 text-right text-black dark:text-white font-semibold">
-                {displayValueShort(averageMultiplier * hatchRate * time)} 🐔
+                {displayValueShort(chickensForHatchRate(hatchRate))} 🐔
               </td>
               <td className="text-right px-2 py-1">
                 {cost.toLocaleString()}{' '}
