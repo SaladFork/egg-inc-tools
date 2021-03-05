@@ -34,7 +34,7 @@ const BoostCalculator = (props) => {
       : unthrottledHatchRate) * 4
 
   return (
-    <Card title="What boosts can I use?">
+    <Card title="What boosts can I use?" subtitle="Includes March 5, 2021 boost GE price changes">
       <div className="p-4 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6">
           <label className="flex flex-col font-semibold">
