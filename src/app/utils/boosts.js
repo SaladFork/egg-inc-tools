@@ -64,7 +64,7 @@ export const tachyonPrisms = [
     multiplier: 1_000,
     time: 60,
     cost: 30_000,
-    tokens: 20,
+    tokens: 24,
     imageUrl: supremeTachyonPrismUrl,
     letter: 'F',
   },
