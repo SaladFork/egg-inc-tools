@@ -172,7 +172,7 @@ export const boostCombinations = [
     //   prisms.map((p) => p.multiplier / (comboTime / p.time))
     // ),
     premium: prisms.length + beacons.length > 2,
-    chickensForHatchRate(hatchRate) {
+    chickensForHatchRate(hatchRate, { artifactBoostBoostBonus = 0 } = {}) {
       // FIXME: Properly calculate multiplier instead of adding time pieces
       // return (
       //   sum(prisms.map((p) => p.multiplier / (comboTime / p.time))) *
@@ -193,7 +193,11 @@ export const boostCombinations = [
             'multiplier'
           ) || 1
 
-        chickensHatched += hatchRate * prismMultiplier * boostBoost * 10
+        chickensHatched +=
+          hatchRate *
+          prismMultiplier *
+          (boostBoost + artifactBoostBoostBonus / 100) *
+          10
       }
       return chickensHatched
     },

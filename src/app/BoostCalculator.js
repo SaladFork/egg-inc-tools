@@ -21,6 +21,14 @@ const BoostCalculator = (props) => {
   const [unthrottledHatchRate, setInternalHatchRate] = useState(null)
   const internalHatchRate = useThrottle(unthrottledHatchRate)
 
+  const [
+    unthrottledArtifactBoostBoostBonus,
+    setArtifactBoostBoostBonus,
+  ] = useState(0)
+  const artifactBoostBoostBonus = useThrottle(
+    unthrottledArtifactBoostBoostBonus
+  )
+
   const [internalHatcheryCalm, setInternalHatcheryCalm] = useState(200)
   const [isOffline, setIsOffline] = useState(true)
   const [hasProPermit, setHasProPermit] = useState(true)
@@ -79,6 +87,56 @@ const BoostCalculator = (props) => {
               />{' '}
               <div className="flex items-center dark:text-white text-opacity-50">
                 🐔 / hab / minute
+              </div>
+            </div>
+          </label>
+
+          <label className="flex flex-col">
+            <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
+              Artifact Boost Boost Bonus
+              <span className="uppercase bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-xl ml-2">
+                Beta
+              </span>
+            </div>
+            <div className="flex space-x-2">
+              <div className="flex items-center dark:text-white text-opacity-50">
+                +
+              </div>
+              <Input
+                type="number"
+                className="flex-grow"
+                placeholder="1, 2, 10, …"
+                value={unthrottledArtifactBoostBoostBonus}
+                onChange={({ target: { value } }) =>
+                  setArtifactBoostBoostBonus(parseInt(value, 10) || null)
+                }
+              />{' '}
+              <div className="flex items-center dark:text-white text-opacity-50">
+                % boost boost
+              </div>
+            </div>
+          </label>
+
+          <label className="flex flex-col">
+            <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
+              Artifact Boost Duration Bonus
+              <span className="uppercase bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-xl ml-2">
+                Coming Soon
+              </span>
+            </div>
+            <div className="flex space-x-2">
+              <div className="flex items-center dark:text-white text-opacity-50">
+                +
+              </div>
+              <Input
+                type="number"
+                className="flex-grow"
+                placeholder="1, 2, 10, …"
+                value={0}
+                disabled
+              />{' '}
+              <div className="flex items-center dark:text-white text-opacity-50">
+                % boost duration
               </div>
             </div>
           </label>
@@ -153,6 +211,7 @@ const BoostCalculator = (props) => {
             target={targetChickenCount}
             hatchRate={hatchRate}
             hasProPermit={hasProPermit}
+            artifactBoostBoostBonus={artifactBoostBoostBonus}
           />
         )}
       </div>

@@ -7,7 +7,12 @@ import tokenUrl from 'app/images/Token.png'
 import { displayValueShort } from './utils/suffixes'
 import { orderBy } from 'lodash'
 
-const BoostTable = ({ hatchRate, hasProPermit, target }) => {
+const BoostTable = ({
+  hatchRate,
+  hasProPermit,
+  target,
+  artifactBoostBoostBonus,
+}) => {
   const [limit, setLimit] = useState(50)
   const [sortBy, setSortBy] = useState('cost')
 
@@ -18,7 +23,9 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
       combos = combos.filter((c) => c.prisms.length + c.beacons.length <= 2)
     }
     combos = combos.filter(
-      (c) => c.chickensForHatchRate(hatchRate) >= target * 0.98
+      (c) =>
+        c.chickensForHatchRate(hatchRate, { artifactBoostBoostBonus }) >=
+        target * 0.98
     )
 
     combos = orderBy(
@@ -29,7 +36,14 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
 
     combos = combos.slice(0, limit)
     return combos
-  }, [limit, hasProPermit, hatchRate, target, sortBy])
+  }, [
+    limit,
+    hasProPermit,
+    hatchRate,
+    target,
+    sortBy,
+    [artifactBoostBoostBonus],
+  ])
 
   return (
     <table className="w-full mx-auto border border-blue-600">
@@ -109,7 +123,10 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
                 </div>
               </td>
               <td className="px-2 py-1 text-right text-black dark:text-white font-semibold">
-                {displayValueShort(chickensForHatchRate(hatchRate))} 🐔
+                {displayValueShort(
+                  chickensForHatchRate(hatchRate, { artifactBoostBoostBonus })
+                )}{' '}
+                🐔
               </td>
               <td className="text-right px-2 py-1">
                 {cost.toLocaleString()}{' '}
