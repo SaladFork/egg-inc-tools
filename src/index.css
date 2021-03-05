@@ -17,3 +17,13 @@
     @apply underline hover:text-blue-600;
   }
 }
+
+@layer components {
+  .tooltip {
+    @apply invisible absolute;
+  }
+
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50;
+  }
+}

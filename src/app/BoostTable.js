@@ -76,26 +76,37 @@ const BoostTable = ({ hatchRate, hasProPermit, target }) => {
                   {beacons.map((b) => b.letter).join('')}
                 </span>
               </td>
-              <td className="flex">
-                {prisms.map((p, i) => (
-                  <img
-                    key={`${p.name}-${i}`}
-                    alt={p.name}
-                    title={p.name}
-                    src={p.imageUrl}
-                    className="w-4 h-4 sm:w-6 sm:h-6 md:w-10 md:h-10"
-                  />
-                ))}
-                {beacons.map((b, i) => (
-                  <img
-                    key={`${b.name}-${i}`}
-                    alt={b.name}
-                    title={b.name}
-                    src={b.imageUrl}
-                    className="w-4 h-4 sm:w-6 sm:h-6 md:w-10 md:h-10"
-                  />
-                ))}
-                {/* averageMultiplier */}
+              <td>
+                <div className="flex">
+                  {prisms.map((p, i) => (
+                    <div className="has-tooltip">
+                      <img
+                        key={`${p.name}-${i}`}
+                        alt={p.name}
+                        title={p.name}
+                        src={p.imageUrl}
+                        className="w-4 h-4 sm:w-6 sm:h-6 md:w-10 md:h-10"
+                      />
+                      <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
+                        {p.name}
+                      </div>
+                    </div>
+                  ))}
+                  {beacons.map((b, i) => (
+                    <div className="has-tooltip">
+                      <img
+                        key={`${b.name}-${i}`}
+                        alt={b.name}
+                        title={b.name}
+                        src={b.imageUrl}
+                        className="w-4 h-4 sm:w-6 sm:h-6 md:w-10 md:h-10"
+                      />
+                      <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
+                        {b.name}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </td>
               <td className="px-2 py-1 text-right text-black dark:text-white font-semibold">
                 {displayValueShort(chickensForHatchRate(hatchRate))} 🐔
