@@ -8,7 +8,7 @@ const Input = ({ className: passedClassName, disabled, ...rest }) => {
         'p-2 rounded-lg',
         'border-2 border-gray-200 dark:border-gray-600',
         disabled
-          ? 'bg-gray-200 dark:bg-gray-600 dark:text-white text-opacity-50'
+          ? 'bg-gray-200 dark:bg-gray-600 dark:text-white text-opacity-50 cursor-not-allowed'
           : 'bg-white dark:bg-gray-800 dark:text-white dark:text-opacity-95',
         'focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 focus:border-gray-600',
         'shadow-md',
