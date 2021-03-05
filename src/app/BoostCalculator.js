@@ -30,11 +30,14 @@ const BoostCalculator = (props) => {
   const hatchRate =
     haveValues &&
     (isOffline
-      ? unthrottledHatchRate * (1 + internalHatcheryCalm / 100)
-      : unthrottledHatchRate) * 4
+      ? internalHatchRate * (1 + internalHatcheryCalm / 100)
+      : internalHatchRate) * 4
 
   return (
-    <Card title="What boosts can I use?" subtitle="Includes March 5, 2021 boost GE price changes">
+    <Card
+      title="What boosts can I use?"
+      subtitle="Includes March 5, 2021 boost GE price changes"
+    >
       <div className="p-4 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6">
           <label className="flex flex-col font-semibold">
@@ -147,7 +150,7 @@ const BoostCalculator = (props) => {
 
         {haveValues && (
           <BoostTable
-            target={unthrottledTargetChickenCount}
+            target={targetChickenCount}
             hatchRate={hatchRate}
             hasProPermit={hasProPermit}
           />
