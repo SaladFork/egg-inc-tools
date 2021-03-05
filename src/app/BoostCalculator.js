@@ -75,7 +75,7 @@ const BoostCalculator = (props) => {
                 }
               />{' '}
               <div className="flex items-center dark:text-white text-opacity-50">
-                🐔 / minute
+                🐔 / hab / minute
               </div>
             </div>
           </label>
