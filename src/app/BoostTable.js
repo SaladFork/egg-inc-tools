@@ -36,33 +36,26 @@ const BoostTable = ({
 
     combos = combos.slice(0, limit)
     return combos
-  }, [
-    limit,
-    hasProPermit,
-    hatchRate,
-    target,
-    sortBy,
-    [artifactBoostBoostBonus],
-  ])
+  }, [limit, hasProPermit, hatchRate, target, sortBy, artifactBoostBoostBonus])
 
   return (
     <table className="w-full mx-auto border border-blue-600">
       <thead className="text-xs text-opacity-80 text-center bg-blue-600 text-white">
         <tr>
-          <th></th>
-          <th className="px-2 py-1">Boost Combo</th>
-          <th className="px-2 py-1">Chickens Hatched</th>
-          <th className="px-2 py-1">
+          <th className="hidden sm:table-cell"></th>
+          <th className="px-2 py-1 text-left">Boost Combo</th>
+          <th className="px-2 py-1 text-right">Chickens Hatched</th>
+          <th className="px-2 py-1 text-right">
             <button className="font-bold" onClick={() => setSortBy('cost')}>
               GE Cost{sortBy === 'cost' && ' ▲'}
             </button>
           </th>
-          <th className="px-2 py-1">
+          <th className="px-2 py-1 text-right">
             <button className="font-bold" onClick={() => setSortBy('tokens')}>
               Token Cost{sortBy === 'tokens' && ' ▲'}
             </button>
           </th>
-          <th className="px-2 py-1">
+          <th className="hidden sm:table-cell px-2 py-1 text-right">
             <button className="font-bold" onClick={() => setSortBy('time')}>
               Time{sortBy === 'time' && ' ▲'}
             </button>
@@ -74,6 +67,7 @@ const BoostTable = ({
           ({
             prisms,
             beacons,
+            name,
             cost,
             tokens,
             time,
@@ -84,42 +78,46 @@ const BoostTable = ({
               key={key}
               className="text-sm even:bg-gray-100 dark:even:bg-gray-700 dark:text-white text-opacity-80"
             >
-              <td className="px-2 py-1 text-center">
+              <td className="hidden sm:table-cell px-2 py-1 text-center">
                 <span className="text-black dark:text-white text-opacity-50">
-                  {prisms.map((p) => p.letter).join('')}
-                  {beacons.map((b) => b.letter).join('')}
+                  {name}
                 </span>
               </td>
               <td>
-                <div className="flex">
-                  {prisms.map((p, i) => (
-                    <div className="has-tooltip">
-                      <img
-                        key={`${p.name}-${i}`}
-                        alt={p.name}
-                        title={p.name}
-                        src={p.imageUrl}
-                        className="w-4 h-4 sm:w-6 sm:h-6 md:w-10 md:h-10"
-                      />
-                      <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
-                        {p.name}
+                <div className="flex flex-col">
+                  <div className="flex">
+                    {prisms.map((p, i) => (
+                      <div className="has-tooltip">
+                        <img
+                          key={`${p.name}-${i}`}
+                          alt={p.name}
+                          title={p.name}
+                          src={p.imageUrl}
+                          className="w-6 h-6 md:w-10 md:h-10"
+                        />
+                        <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
+                          {p.name}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                  {beacons.map((b, i) => (
-                    <div className="has-tooltip">
-                      <img
-                        key={`${b.name}-${i}`}
-                        alt={b.name}
-                        title={b.name}
-                        src={b.imageUrl}
-                        className="w-4 h-4 sm:w-6 sm:h-6 md:w-10 md:h-10"
-                      />
-                      <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
-                        {b.name}
+                    ))}
+                    {beacons.map((b, i) => (
+                      <div className="has-tooltip">
+                        <img
+                          key={`${b.name}-${i}`}
+                          alt={b.name}
+                          title={b.name}
+                          src={b.imageUrl}
+                          className="w-6 h-6 md:w-10 md:h-10"
+                        />
+                        <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
+                          {b.name}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  <div className="sm:hidden text-center text-black dark:text-white text-opacity-50">
+                    {name}
+                  </div>
                 </div>
               </td>
               <td className="px-2 py-1 text-right text-black dark:text-white font-semibold">
@@ -130,13 +128,23 @@ const BoostTable = ({
               </td>
               <td className="text-right px-2 py-1">
                 {cost.toLocaleString()}{' '}
-                <img className="inline" alt="Golden Eggs" src={goldenEggUrl} />
+                <img
+                  className="hidden sm:inline-block"
+                  alt="Golden Eggs"
+                  src={goldenEggUrl}
+                />
               </td>
               <td className="text-right px-2 py-1">
                 {tokens.toLocaleString()}{' '}
-                <img className="inline" alt="Tokens" src={tokenUrl} />
+                <img
+                  className="hidden sm:inline-block"
+                  alt="Tokens"
+                  src={tokenUrl}
+                />
               </td>
-              <td className="text-right px-2 py-1">{time} min</td>
+              <td className="text-right px-2 py-1 hidden sm:table-cell">
+                {time} min
+              </td>
             </tr>
           )
         )}

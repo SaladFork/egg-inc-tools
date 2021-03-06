@@ -167,6 +167,10 @@ export const boostCombinations = [
     cost: sumBy(prisms, 'cost') + sumBy(beacons, 'cost'),
     tokens: sumBy(prisms, 'tokens') + sumBy(beacons, 'tokens'),
     time: comboTime,
+    name: [
+      prisms.map((p) => p.letter).join(''),
+      beacons.map((b) => b.letter).join(''),
+    ].join(''),
     // FIXME: This doesn't work unless the boost beacons line up time-wise exactly in full
     // averageMultiplier: sum(
     //   prisms.map((p) => p.multiplier / (comboTime / p.time))
