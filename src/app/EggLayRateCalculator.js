@@ -74,7 +74,7 @@ const EggLayRateCalculator = () => {
           <table className="w-full max-w-sm mx-auto border border-blue-600">
             <thead className="font-medium text-xs text-opacity-80 text-center bg-blue-600 text-white">
               <tr>
-                <th className="px-2 py-1">Boost Timing</th>
+                <th className="px-2 py-1">Time</th>
                 <th className="px-2 py-1">Egg Lay Rate Needed</th>
               </tr>
             </thead>
