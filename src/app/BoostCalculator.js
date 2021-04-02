@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react'
-import t from 'prop-types'
 import Card from './components/Card'
 import {
   displayValue,

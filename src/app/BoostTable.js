@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react'
-import t from 'prop-types'
 
 import { boostCombinations } from 'app/utils/boosts'
 import goldenEggUrl from 'app/images/Golden_Egg.png'
@@ -13,7 +12,7 @@ const BoostTable = ({
   target,
   artifactBoostBoostBonus,
 }) => {
-  const [limit, setLimit] = useState(50)
+  const [limit] = useState(50)
   const [sortBy, setSortBy] = useState('cost')
 
   const boostsToShow = useMemo(() => {

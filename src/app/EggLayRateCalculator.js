@@ -44,7 +44,7 @@ const EggLayRateCalculator = () => {
         </label>
         <label className="flex flex-col font-semibold">
           <div className="mb-2 dark:text-white text-opacity-80">
-            Contract Length
+            Time Left in Contract
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-2">
             <Input
@@ -74,12 +74,12 @@ const EggLayRateCalculator = () => {
           <table className="w-full max-w-sm mx-auto border border-blue-600">
             <thead className="font-medium text-xs text-opacity-80 text-center bg-blue-600 text-white">
               <tr>
-                <th className="px-2 py-1">If you had full chickens...</th>
-                <th className="px-2 py-1">Egg laying rate needed</th>
+                <th className="px-2 py-1">Boost Timing</th>
+                <th className="px-2 py-1">Egg Lay Rate Needed</th>
               </tr>
             </thead>
             <tbody>
-              {[0, 4, 8, 12, 16, 24, 48, 72]
+              {[0, 2, 4, 8, 12, 16, 24, 48, 72]
                 .filter((offset) => offset < contractLengthInHours)
                 .map((offset) => (
                   <tr
@@ -87,7 +87,7 @@ const EggLayRateCalculator = () => {
                     key={offset}
                   >
                     <td className="px-2 py-1 border-r-2 border-gray-100 dark:border-gray-700">
-                      {offset ? `${offset} hours in` : 'Instantly'}
+                      {offset ? `in ${offset} hours` : 'Now'}
                     </td>
                     <td className="text-right px-2 py-1">
                       {displayValueShort(

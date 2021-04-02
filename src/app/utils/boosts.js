@@ -10,7 +10,7 @@ import largeBoostBeacon from 'app/images/Large_Boost_Beacon.png'
 import legendaryBoostBeacon from 'app/images/Legendary_Boost_Beacon.png'
 import 'lodash.multicombinations'
 import 'lodash.product'
-import { max, multicombinations, product, sum, sumBy } from 'lodash'
+import { max, multicombinations, product, sumBy } from 'lodash'
 
 // Tachyon Prisms -- Increase internal hatchery rate
 export const tachyonPrisms = [

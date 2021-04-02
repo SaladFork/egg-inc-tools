@@ -1,7 +1,6 @@
 import ChickensRequiredCalculator from 'app/ChickensRequiredCalculator'
 import EggLayRateCalculator from 'app/EggLayRateCalculator'
 import BoostCalculator from 'app/BoostCalculator'
-import { useState } from 'react'
 
 function App() {
   return (
@@ -17,6 +16,9 @@ function App() {
           Data, game logic, and images are all copyright &copy;{' '}
           <a href="http://auxbrain.com/">Auxbrain, Inc.</a> as part of their
           game Egg, Inc.
+          <br />
+          Note: this calculator usees conservative estimates that do not take
+          into account continued farm growth and future research availability.
         </div>
       </div>
     </div>
