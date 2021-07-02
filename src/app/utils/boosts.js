@@ -191,17 +191,21 @@ export const boostCombinations = [
             'multiplier'
           ) || 1
 
+        // If we don't have any tachyon prisms activated, let's stop counting
+        // the chickens hatched, otherwise we're just measuring internal hatch
+        // rate, not the bost.
+        if (prismMultiplier === 1) return chickensHatched
+
         const boostBoost =
           sumBy(
             beacons.filter((b) => b.time >= t),
             'multiplier'
           ) || 1
 
-        chickensHatched +=
-          hatchRate *
-          prismMultiplier *
-          (boostBoost + artifactBoostBoostBonus / 100) *
-          10
+        const boostMultiplier =
+          prismMultiplier * (boostBoost + artifactBoostBoostBonus / 100)
+
+        chickensHatched += hatchRate * boostMultiplier * 10
       }
       return chickensHatched
     },
