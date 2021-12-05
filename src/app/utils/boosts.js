@@ -10,7 +10,7 @@ import largeBoostBeacon from 'app/images/Large_Boost_Beacon.png'
 import legendaryBoostBeacon from 'app/images/Legendary_Boost_Beacon.png'
 import 'lodash.multicombinations'
 import 'lodash.product'
-import { max, multicombinations, product, sumBy } from 'lodash'
+import { max, min, multicombinations, product, sum, sumBy } from 'lodash'
 
 // Tachyon Prisms -- Increase internal hatchery rate
 export const tachyonPrisms = [
@@ -176,38 +176,34 @@ export const boostCombinations = [
     //   prisms.map((p) => p.multiplier / (comboTime / p.time))
     // ),
     premium: prisms.length + beacons.length > 2,
-    chickensForHatchRate(hatchRate, { artifactBoostBoostBonus = 0 } = {}) {
-      // FIXME: Properly calculate multiplier instead of adding time pieces
-      // return (
-      //   sum(prisms.map((p) => p.multiplier / (comboTime / p.time))) *
-      //   hatchRate *
-      //   comboTime
-      // )
-      let chickensHatched = 0
-      for (let t = 10; t <= comboTime; t += 10) {
-        const prismMultiplier =
-          sumBy(
-            prisms.filter((p) => p.time >= t),
-            'multiplier'
-          ) || 1
+    chickensForHatchRate(hatchRate, { monocleBoostBonus = 0 } = {}) {
 
-        // If we don't have any tachyon prisms activated, let's stop counting
-        // the chickens hatched, otherwise we're just measuring internal hatch
-        // rate, not the bost.
-        if (prismMultiplier === 1) return chickensHatched
-
-        const boostBoost =
-          sumBy(
-            beacons.filter((b) => b.time >= t),
-            'multiplier'
-          ) || 1
-
-        const boostMultiplier =
-          prismMultiplier * (boostBoost + artifactBoostBoostBonus / 100)
-
-        chickensHatched += hatchRate * boostMultiplier * 10
+      function prismMultiplierWithArtifactBoost(prism) {
+        return prism.multiplier * (1 + monocleBoostBonus / 100)
       }
-      return chickensHatched
+
+      // Hatch multiplier refers to the product of time and the population multiplier. 
+      // The total chicken hatched will therefore simply be hatch multiplier * hatch rate.
+
+      const hatchMultiplierWithBeacon = sum(
+        product(prisms, beacons).map(
+          ([prism, beacon]) => prismMultiplierWithArtifactBoost(prism) * beacon.multiplier * min([beacon.time, prism.time])
+        ))
+
+      let hatchMultiplierWithoutBeacon;
+      if (beacons.length === 0) {
+        // If there are no beacons used, simply sum up the effect of each prism over its duration.
+        hatchMultiplierWithoutBeacon = sum(prisms.map((p) => prismMultiplierWithArtifactBoost(p) * p.time))
+      } else {
+        // Find the duration for each prism that is not boosted by any boost beacons. 
+        hatchMultiplierWithoutBeacon = sum(
+          prisms.map((p) => {
+            const maxBoostBeaconTime = max(beacons.map((i) => i.time))
+            return prismMultiplierWithArtifactBoost(p) * max([0, p.time - maxBoostBeaconTime])
+          }))
+      }
+
+      return (hatchMultiplierWithBeacon + hatchMultiplierWithoutBeacon) * hatchRate
     },
   }
 })

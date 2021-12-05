@@ -21,11 +21,11 @@ const BoostCalculator = (props) => {
   const internalHatchRate = useThrottle(unthrottledHatchRate)
 
   const [
-    unthrottledArtifactBoostBoostBonus,
-    setArtifactBoostBoostBonus,
+    unthrottledMonocleBoostBonus,
+    setMonocleBoostBonus,
   ] = useState(0)
-  const artifactBoostBoostBonus = useThrottle(
-    unthrottledArtifactBoostBoostBonus
+  const monocleBoostBonus = useThrottle(
+    unthrottledMonocleBoostBonus
   )
 
   const [internalHatcheryCalm, setInternalHatcheryCalm] = useState(200)
@@ -92,7 +92,7 @@ const BoostCalculator = (props) => {
 
           <label className="flex flex-col">
             <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
-              Artifact Boost Boost Bonus
+              Dilithium Monocle Boost Bonus
               <span className="uppercase bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-xl ml-2">
                 Beta
               </span>
@@ -105,9 +105,9 @@ const BoostCalculator = (props) => {
                 type="number"
                 className="flex-grow"
                 placeholder="1, 2, 10, …"
-                value={unthrottledArtifactBoostBoostBonus}
+                value={unthrottledMonocleBoostBonus}
                 onChange={({ target: { value } }) =>
-                  setArtifactBoostBoostBonus(parseInt(value, 10) || null)
+                  setMonocleBoostBonus(parseInt(value, 10) || null)
                 }
               />{' '}
               <div className="flex items-center dark:text-white text-opacity-50">
@@ -210,7 +210,7 @@ const BoostCalculator = (props) => {
             target={targetChickenCount}
             hatchRate={hatchRate}
             hasProPermit={hasProPermit}
-            artifactBoostBoostBonus={artifactBoostBoostBonus}
+            monocleBoostBonus={monocleBoostBonus}
           />
         )}
       </div>
