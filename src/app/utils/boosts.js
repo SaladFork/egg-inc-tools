@@ -27,7 +27,7 @@ export const tachyonPrisms = [
     name: 'Large Tachyon Prism',
     multiplier: 10,
     time: 240,
-    cost: 1000,
+    cost: 500,
     tokens: 3,
     imageUrl: largeTachyonPrismUrl,
     letter: 'B',
