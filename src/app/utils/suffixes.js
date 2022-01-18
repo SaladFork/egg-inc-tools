@@ -39,7 +39,7 @@ export const parseValueString = (valueString) => {
   const result = valueParseRegex.exec(valueString)
   if (!result) return null
 
-  const [_, value, exponent, suffix] = result
+  const [, value, exponent, suffix] = result
 
   let calculated = parseFloat(value)
 
