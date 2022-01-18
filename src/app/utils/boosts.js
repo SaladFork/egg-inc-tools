@@ -21,6 +21,16 @@ export const tachyonPrisms = [
     cost: 200,
     tokens: 1,
     imageUrl: tachyonPrismUrl,
+    letter: 'a',
+    old: true
+  },
+  {
+    name: 'Tachyon Prism',
+    multiplier: 10,
+    time: 10,
+    cost: 50,
+    tokens: 1,
+    imageUrl: tachyonPrismUrl,
     letter: 'A',
   },
   {
@@ -36,6 +46,16 @@ export const tachyonPrisms = [
     name: 'Powerful Tachyon Prism',
     multiplier: 100,
     time: 20,
+    cost: 1000,
+    tokens: 3,
+    imageUrl: powerfulTachyonPrismUrl,
+    letter: 'c',
+    old: true
+  },
+  {
+    name: 'Powerful Tachyon Prism',
+    multiplier: 100,
+    time: 10,
     cost: 1000,
     tokens: 3,
     imageUrl: powerfulTachyonPrismUrl,

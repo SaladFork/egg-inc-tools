@@ -9,6 +9,7 @@ import { orderBy } from 'lodash'
 const BoostTable = ({
   hatchRate,
   hasProPermit,
+  showOldBoosts,
   target,
   artifactBoostBoostBonus,
 }) => {
@@ -20,6 +21,9 @@ const BoostTable = ({
 
     if (!hasProPermit) {
       combos = combos.filter((c) => c.prisms.length + c.beacons.length <= 2)
+    }
+    if (!showOldBoosts) {
+      combos = combos.filter(c => !c.prisms.some(p => p.old) && !c.beacons.some(b => b.old))
     }
     combos = combos.filter(
       (c) =>
@@ -35,7 +39,7 @@ const BoostTable = ({
 
     combos = combos.slice(0, limit)
     return combos
-  }, [limit, hasProPermit, hatchRate, target, sortBy, artifactBoostBoostBonus])
+  }, [limit, hasProPermit, showOldBoosts, hatchRate, target, sortBy, artifactBoostBoostBonus])
 
   return (
     <table className="w-full mx-auto border border-blue-600">
@@ -95,8 +99,9 @@ const BoostTable = ({
                           className="w-6 h-6 md:w-10 md:h-10"
                         />
                         <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
-                          {p.name}
+                          {p.name}{p.old && ' (old)'}
                         </div>
+                        {p.old && <div className="absolute -mt-10 ">Old</div>}
                       </div>
                     ))}
                     {beacons.map((b, i) => (
@@ -109,8 +114,9 @@ const BoostTable = ({
                           className="w-6 h-6 md:w-10 md:h-10"
                         />
                         <div className="tooltip pointer-events-none bg-gray-900 text-white font-medium opacity-95 p-2 rounded-xl -mt-10 ml-1 sm:-mt-12 sm:ml-2 md:-mt-16 md:ml-4">
-                          {b.name}
+                          {b.name}{b.old && ' (old)'}
                         </div>
+                        {b.old && <div className="absolute -mt-10">Old</div>}
                       </div>
                     ))}
                   </div>

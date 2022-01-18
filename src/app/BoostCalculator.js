@@ -31,6 +31,7 @@ const BoostCalculator = (props) => {
   const [internalHatcheryCalm, setInternalHatcheryCalm] = useState(200)
   const [isOffline, setIsOffline] = useState(true)
   const [hasProPermit, setHasProPermit] = useState(true)
+  const [showOldBoosts, setShowOldBoosts] = useState(false)
 
   const haveValues = !!(targetChickenCount && internalHatchRate)
 
@@ -43,7 +44,7 @@ const BoostCalculator = (props) => {
   return (
     <Card
       title="What boosts can I use?"
-      subtitle="Includes November 22, 2021 boost price changes"
+      subtitle="Includes Jan 14, 2022 boost changes"
     >
       <div className="p-4 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6">
@@ -140,7 +141,7 @@ const BoostCalculator = (props) => {
             </div>
           </label>
 
-          <div className="col-span-1 lg:col-span-2 grid grid-cols-1 lg:grid-cols-3 space-y-6 lg:space-y-0 lg:space-x-6">
+          <div className="col-span-1 lg:col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 space-y-6 md:space-x-3 lg:space-y-0 lg:space-x-6">
             <label className="flex flex-col">
               <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
                 Internal Hatchery Calm
@@ -202,6 +203,27 @@ const BoostCalculator = (props) => {
                 </div>
               </div>
             </div>
+
+            <div className="flex flex-col">
+              <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
+                Old Boosts (pre-Jan 2022)
+              </div>
+              <div className="flex space-x-2">
+                <div className="flex-grow flex items-center dark:text-white text-opacity-50 w-12">
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={showOldBoosts}
+                      onChange={({ target: { checked } }) =>
+                        setShowOldBoosts(checked)
+                      }
+                    />
+                    <span>Include Old Boosts</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -210,6 +232,7 @@ const BoostCalculator = (props) => {
             target={targetChickenCount}
             hatchRate={hatchRate}
             hasProPermit={hasProPermit}
+            showOldBoosts={showOldBoosts}
             artifactBoostBoostBonus={artifactBoostBoostBonus}
           />
         )}
