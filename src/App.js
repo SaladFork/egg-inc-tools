@@ -17,7 +17,7 @@ function App() {
           <a href="http://auxbrain.com/">Auxbrain, Inc.</a> as part of their
           game Egg, Inc.
           <br />
-          Note: this calculator usees conservative estimates that do not take
+          Note: this calculator uses conservative estimates that do not take
           into account continued farm growth and future research availability.
         </div>
       </div>
