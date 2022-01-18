@@ -184,7 +184,8 @@ export const boostCombinations = [
       //   comboTime
       // )
       let chickensHatched = 0
-      for (let t = 10; t <= comboTime; t += 10) {
+      const timeStep = 10
+      for (let t = timeStep; t <= comboTime; t += timeStep) {
         const prismMultiplier =
           sumBy(
             prisms.filter((p) => p.time >= t),
@@ -203,9 +204,9 @@ export const boostCombinations = [
           ) || 1
 
         const boostMultiplier =
-          prismMultiplier * (boostBoost + artifactBoostBoostBonus / 100)
+          prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100))
 
-        chickensHatched += hatchRate * boostMultiplier * 10
+        chickensHatched += hatchRate * boostMultiplier * timeStep
       }
       return chickensHatched
     },
