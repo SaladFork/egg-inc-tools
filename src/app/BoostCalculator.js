@@ -28,8 +28,17 @@ const BoostCalculator = (props) => {
     unthrottledArtifactBoostBoostBonus
   )
 
+  const [
+    unthrottledDilithiumBoostBonus,
+    setDilithiumBoostBonus,
+  ] = useState(0)
+  const dilithiumBoostBonus = useThrottle(
+    unthrottledDilithiumBoostBonus
+  )
+
   const [internalHatcheryCalm, setInternalHatcheryCalm] = useState(200)
   const [isOffline, setIsOffline] = useState(true)
+
   const [hasProPermit, setHasProPermit] = useState(true)
   const [showOldBoosts, setShowOldBoosts] = useState(false)
 
@@ -120,9 +129,6 @@ const BoostCalculator = (props) => {
           <label className="flex flex-col">
             <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
               Artifact Boost Duration Bonus
-              <span className="uppercase bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-xl ml-2">
-                Coming Soon
-              </span>
             </div>
             <div className="flex space-x-2">
               <div className="flex items-center dark:text-white text-opacity-50">
@@ -132,8 +138,10 @@ const BoostCalculator = (props) => {
                 type="number"
                 className="flex-grow"
                 placeholder="1, 2, 10, …"
-                value={0}
-                disabled
+                value={unthrottledDilithiumBoostBonus}
+                onChange={({ target: { value } }) =>
+                  setDilithiumBoostBonus(parseInt(value, 10) || null)
+                }
               />{' '}
               <div className="flex items-center dark:text-white text-opacity-50">
                 % boost duration
@@ -234,6 +242,7 @@ const BoostCalculator = (props) => {
             hasProPermit={hasProPermit}
             showOldBoosts={showOldBoosts}
             artifactBoostBoostBonus={artifactBoostBoostBonus}
+            dilithiumBoostBonus={dilithiumBoostBonus}
           />
         )}
       </div>
