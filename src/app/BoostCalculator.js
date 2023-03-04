@@ -236,7 +236,7 @@ const BoostCalculator = (props) => {
             hasProPermit={hasProPermit}
             showOldBoosts={showOldBoosts}
             artifactBoostBoostBonus={artifactBoostBoostBonus}
-            dilithiumBoostBonus={dilithiumBoostBonus}
+            dilithiumBoostBonus={dilithiumBoostBonus ? dilithiumBoostBonus : 1}
           />
         )}
       </div>
