@@ -196,6 +196,9 @@ export const boostCombinations = [
     //   prisms.map((p) => p.multiplier / (comboTime / p.time))
     // ),
     premium: prisms.length + beacons.length > 2,
+    getComboTime() {
+      return comboTime;
+    },
     chickensForHatchRate(hatchRate, {dilithiumBoostBonus = 0 } = {}, { artifactBoostBoostBonus = 0 } = {}) {
       // FIXME: Properly calculate multiplier instead of adding time pieces
       // return (

@@ -20,6 +20,10 @@ const BoostTable = ({
   const boostsToShow = useMemo(() => {
     let combos = boostCombinations
 
+    if(dilithiumBoostBonus && dilithiumBoostBonus > 0) combos.forEach((c) => {
+      c.time = c.getComboTime() * (1 + (dilithiumBoostBonus / 100));
+    });
+
     if (!hasProPermit) {
       combos = combos.filter((c) => c.prisms.length + c.beacons.length <= 2)
     }
