@@ -21,7 +21,7 @@ const BoostTable = ({
     let combos = boostCombinations
 
     if(dilithiumBoostBonus && dilithiumBoostBonus > 0) combos.forEach((c) => {
-      c.time = c.getComboTime() * (1 + (dilithiumBoostBonus / 100));
+      c.time = c.getComboTime() * (dilithiumBoostBonus);
     });
 
     if (!hasProPermit) {

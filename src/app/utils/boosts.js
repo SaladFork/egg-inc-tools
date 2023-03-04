@@ -226,10 +226,15 @@ export const boostCombinations = [
             'multiplier'
           ) || 1
 
-        const boostMultiplier =
-          prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100))
+          var boostMultiplier;
 
-        const dilMultiplier = 1 + (dilithiumBoostBonus / 100)
+          if(artifactBoostBoostBonus)
+            boostMultiplier = prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100));
+          else
+            boostMultiplier = prismMultiplier * boostBoost;
+          
+
+        const dilMultiplier = dilithiumBoostBonus;
 
         chickensHatched += hatchRate * boostMultiplier * dilMultiplier * timeStep
       }

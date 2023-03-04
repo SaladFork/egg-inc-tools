@@ -23,18 +23,12 @@ const BoostCalculator = (props) => {
   const [
     unthrottledArtifactBoostBoostBonus,
     setArtifactBoostBoostBonus,
-  ] = useState(0)
+  ] = useState()
   const artifactBoostBoostBonus = useThrottle(
     unthrottledArtifactBoostBoostBonus
   )
 
-  const [
-    unthrottledDilithiumBoostBonus,
-    setDilithiumBoostBonus,
-  ] = useState(0)
-  const dilithiumBoostBonus = useThrottle(
-    unthrottledDilithiumBoostBonus
-  )
+  const [dilithiumBoostBonus, setDilithiumBoostBonus] = useState()
 
   const [internalHatcheryCalm, setInternalHatcheryCalm] = useState(200)
   const [isOffline, setIsOffline] = useState(true)
@@ -103,9 +97,6 @@ const BoostCalculator = (props) => {
           <label className="flex flex-col">
             <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
               Artifact Boost Boost Bonus
-              <span className="uppercase bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-xl ml-2">
-                Beta
-              </span>
             </div>
             <div className="flex space-x-2">
               <div className="flex items-center dark:text-white text-opacity-50">
@@ -128,7 +119,8 @@ const BoostCalculator = (props) => {
 
           <label className="flex flex-col">
             <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
-              Artifact Boost Duration Bonus
+              Artifact Boost Duration Bonus - &nbsp;
+              <a href="https://wasmegg.netlify.app/">Calculate @ Artifact Sandbox</a>
             </div>
             <div className="flex space-x-2">
               <div className="flex items-center dark:text-white text-opacity-50">
@@ -136,15 +128,17 @@ const BoostCalculator = (props) => {
               </div>
               <Input
                 type="number"
+                step={0.01}
+                presicion={2}
                 className="flex-grow"
-                placeholder="1, 2, 10, …"
-                value={unthrottledDilithiumBoostBonus}
+                placeholder="1.05, 1.1, 1.5, …"
+                value={dilithiumBoostBonus}
                 onChange={({ target: { value } }) =>
-                  setDilithiumBoostBonus(parseInt(value, 10) || null)
+                  setDilithiumBoostBonus(parseFloat(value, 10) || null)
                 }
               />{' '}
               <div className="flex items-center dark:text-white text-opacity-50">
-                % boost duration
+                x Boost Duration
               </div>
             </div>
           </label>
