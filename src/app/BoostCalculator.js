@@ -120,7 +120,7 @@ const BoostCalculator = (props) => {
           <label className="flex flex-col">
             <div className="mb-2 dark:text-white text-opacity-80 font-semibold">
               Artifact Boost Duration Bonus - &nbsp;
-              <a href="https://wasmegg.netlify.app/" target="_blank">Calculate @ Artifact Sandbox</a>
+              <a href="https://wasmegg.netlify.app/artifact-sandbox/#/b/" target="_blank">Calculate @ Artifact Sandbox</a>
             </div>
             <div className="flex space-x-2">
               <div className="flex items-center dark:text-white text-opacity-50">
