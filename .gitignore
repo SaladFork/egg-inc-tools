@@ -11,6 +11,12 @@
 # production
 /build
 
+#yarn
+.yarn
+
+#vs-code
+.vscode
+
 # misc
 .DS_Store
 .env.local
