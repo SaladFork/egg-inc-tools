@@ -227,11 +227,12 @@ export const boostCombinations = [
           ) || 1
 
           var boostMultiplier;
-
-          if(artifactBoostBoostBonus)
+          boostMultiplier = prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100));
+          
+          /*if(artifactBoostBoostBonus)
             boostMultiplier = prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100));
           else
-            boostMultiplier = prismMultiplier * boostBoost;
+            boostMultiplier = prismMultiplier * boostBoost;*/
           
 
         const dilMultiplier = dilithiumBoostBonus;
