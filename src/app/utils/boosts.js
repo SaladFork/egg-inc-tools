@@ -226,18 +226,9 @@ export const boostCombinations = [
             'multiplier'
           ) || 1
 
-          var boostMultiplier;
-          boostMultiplier = prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100));
-          
-          /*if(artifactBoostBoostBonus)
-            boostMultiplier = prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100));
-          else
-            boostMultiplier = prismMultiplier * boostBoost;*/
-          
+        const boostMultiplier = prismMultiplier * boostBoost * (1 + (artifactBoostBoostBonus / 100));
 
-        const dilMultiplier = dilithiumBoostBonus;
-
-        chickensHatched += hatchRate * boostMultiplier * dilMultiplier * timeStep
+        chickensHatched += hatchRate * boostMultiplier * dilithiumBoostBonus * timeStep
       }
       return chickensHatched
     },
